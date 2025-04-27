@@ -1,6 +1,6 @@
 FROM quay.io/gurusensei/gurubhay:latest
 
-RUN git clone https://github.com/Lazack28/Lazack-Device /root/lazack
+RUN git clone https://github.com/alii-xd/STARK-MD /root/lazack
 
 WORKDIR /root/lazack/
 
