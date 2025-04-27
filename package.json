@@ -29,16 +29,16 @@
         "MD",
         "baileys-md"
     ],
-    "homepage": "https://github.com/Lazack28/Lazack-Device",
+    "homepage": "https://github.com/alii-xd/STARK-MD",
     "author": {
         "name": "LAZACK"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Lazack28/Lazack-Device.git"
+        "url": "git+https://github.com/alii-xd/STARK-MD.git"
     },
     "bugs": {
-        "url": "https://github.com/Lazack28/Lazack-Device/issues"
+        "url": "https://github.com/alii-xd/STARK-MD/issues"
     },
     "license": "Apache License 2.0",
     "dependencies": {
