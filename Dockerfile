@@ -1,8 +1,8 @@
 FROM quay.io/gurusensei/gurubhay:latest
 
-RUN git clone https://github.com/alii-xd/STARK-MD /root/lazack
+RUN git clone https://github.com/alii-xd/STARK-MD /root/stark 
 
-WORKDIR /root/lazack/
+WORKDIR /root/stark/
 
 RUN npm install --platform=linuxmusl
 
