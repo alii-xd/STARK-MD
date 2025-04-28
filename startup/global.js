@@ -349,16 +349,29 @@ async function connectionUpdate(update) {
   if (!pairingCode && useQr && qr !== 0 && qr !== undefined) {
     conn.logger.info(chalk.yellow('\nLogging in....'))
   }
-  if (connection === 'open') {
-            let notificationText = ` Report: Hello Lazack am using, Lazack Device bot. thanks for the bot`
-              await conn.sendMessage(255734980103 + "@s.whatsapp.net", { text: notificationText })
-  }
 
-  if (connection === 'open') {
-    const { jid, name } = conn.user
-    const msg = `Stark-md is successfully connected.`
+if (connection === 'open') {
+    const { jid, name } = conn.user;
+    let StartMsg = "*✅ STARK-MD CONNECTED SUCCESSFULLY*\n\n" +
+                    "*╭────◇ STARK-MD ◇─────╮*\n" +
+                    "*├◈ Hello there STARK-MD User! 👋🏻*\n" +
+                    "*├◈ PREFIX :* [ " + prefix + " ]\n" +
+                    "*├◈ MODE :* " + botlive + "\n" +
+                    "*├◈ Official Channel :* \n" +
+                    "*├◈ GitHub Repo :* \n" +
+                    "*├◈ Note :* Don't forget to ⭐ the repo!\n" +
+                    "*╰─────────────────────╯*\n" +
+                    "> © Powered by Ali-Xd🖤";
+    
+    const options = {
+      quoted: null
+    };
 
-    await conn.sendMessage(jid, { text: msg, mentions: [jid] }, { quoted: null })
+    await conn.sendMessage(jid, {
+      image: { url: "https://files.catbox.moe/dm39k4.jpg" }, 
+      caption: StartMsg,
+      mentions: [jid]
+    }, options);
 
     conn.logger.info(chalk.yellow('\n 𝖶𝖮𝖱𝖪'))
   }
