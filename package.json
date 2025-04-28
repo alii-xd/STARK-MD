@@ -1,9 +1,9 @@
 
 {
-    "name": "LAZACK MD",
+    "name": "STARK MD",
     "version": "2.1.0",
     "description": "Advanced WhatsApp",
-    "main": "startup/LazackEngage.js",
+    "main": "startup/index.js",
     "type": "module",
     "directories": {
         "lib": "lib",
@@ -14,7 +14,7 @@
         "node": ">=20.0.0"
     },
     "scripts": {
-        "start": "node startup/LazackEngage.js",
+        "start": "node startup/index.js",
         "test": "node startup/LazackEcho.js"
     },
     "keywords": [
@@ -31,7 +31,7 @@
     ],
     "homepage": "https://github.com/alii-xd/STARK-MD",
     "author": {
-        "name": "LAZACK"
+        "name": "STARK"
     },
     "repository": {
         "type": "git",
