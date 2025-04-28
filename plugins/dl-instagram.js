@@ -1,24 +1,28 @@
-import fetch from 'node-fetch';
+import { igdl } from "ruhend-scraper";
 
-let handler = async (m, { conn, usedPrefix, args, command, text }) => {
-  if (!text) throw `LINK?`;
-  m.reply(wait);
+let handler = async (m, { args, conn }) => { 
+    if (!args[0]) {
+        return conn.reply(m.chat, '*\`Please enter the link of the video to download 🤍\`*');
+    }
+    
+    try {
+        await m.react('🕑');
+        
+        let res = await igdl(args[0]);
+        let data = res.data; 
+        
+        for (let media of data) {
+            await new Promise(resolve => setTimeout(resolve, 2000));
 
-  let res = await fetch(`https://api.zeltoria.my.id/api/download/instagram?apikey=Elistz&url=${text}`);
-  let x = await res.json();
-
-  let cap = `HERE IS THE VIDEO >,<`;
-  
-  if (x.result && x.result.length > 0) {
-    conn.sendFile(m.chat, x.result[0].url, 'instagram.mp4', cap, m);
-  } else {
-    throw `No video found.`;
-  }
+            await m.react('✅');
+            await conn.sendFile(m.chat, media.url, 'instagram.mp4', dev, null, m); 
+        }
+    } catch {
+        await m.react('❌');
+    }
 }
+handler.command = ['ig', 'igdl', 'instagram'];
+handler.tags = ['dl'];
+handler.help = ['ig *<link>*']
 
-handler.help = ['instagram']
-handler.tags = ['downloader']
-handler.command = /^(instagram|igdl|ig|instagramdl)$/i
-
-
-export default handler
+export default handler;
