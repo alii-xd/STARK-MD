@@ -2,23 +2,20 @@ import fg from 'api-dylux'
 
 const handler = async (m, { conn, args, usedPrefix, command }) => {
   if (!args[0]) {
-    throw `✳️ Please send the link of a Facebook video\n\n📌 EXAMPLE :\n*${usedPrefix + command}* https://www.facebook.com/Ankursajiyaan/videos/981948876160874/?mibextid=rS40aB7S9Ucbxw6v`
+    throw `*✳️ PLEASE SEND THE LINK OF A FACEBOOK VIDEO*\n\n*📌 EXAMPLE :*\n*${usedPrefix + command}* https://www.facebook.com/Ankursajiyaan/videos/981948876160874/?mibextid=S40aB7S9Ucbxw6v`
   }
 
   const urlRegex =
     /^(?:https?:\/\/)?(?:www\.)?(?:facebook\.com|fb\.watch)\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i
   if (!urlRegex.test(args[0])) {
-    throw '⚠️ PLEASE GIVE A VALID URL.'
+    throw '*⚠️ PLEASE GIVE A VALID URL.*'
   }
 
   m.react(rwait)
 
   try {
     const result = await fg.fbdl(args[0])
-    const tex = `
-⊱ *LAZACK MD FACEBOOK DOWNLOADER*⊰\n\n
-↳ *VIDEO TITLE:* ${result.title}
-⊱ *_THANKS FOR CHOOSING LAZACK MD_*`
+    const tex = `*🫟𝐅𝐀𝐂𝐄𝐁𝐎𝐎𝐊-𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃*`
 
     const response = await fetch(result.videoUrl)
     const arrayBuffer = await response.arrayBuffer()
