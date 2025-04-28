@@ -15,7 +15,7 @@
     },
     "scripts": {
         "start": "node startup/index.js",
-        "test": "node startup/LazackEcho.js"
+        "test": "node startup/bot.js"
     },
     "keywords": [
         "termux-whatsapp-bot",
