@@ -16,14 +16,14 @@ let handler = async (m, { conn, args, command }) => {
 
     await conn.sendMessage(m.chat, {
       image: { url: pp },
-      caption: `👤 *Profile Picture of ${name}*`,
+      caption: `👤 *Profile Picture Of ${name}*`,
       contextInfo: {
         mentionedJid: [user],
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363200367779016@newsletter',
-          newsletterName: 'Silva md bot',
+          newsletterJid: '120363318387454868@newsletter',
+          newsletterName: '𝐒ʈαɣƙ 𝐌Ɗ⎯꯭̽💀🚩',
           serverMessageId: 143
         }
       }
