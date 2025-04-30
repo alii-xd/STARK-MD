@@ -11,12 +11,14 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
         if (warn < war) {
             global.db.data.users[who].warn += 1
             m.reply(`
-⚠️ *Warned User* ⚠️
+*⌈⚠️ WARNING ⌋*
+*╭───────────────┄┈*
+*├▢ Admin:* ${name}
+*├▢ USER:* @${who.split`@`[0]}
+*├▢ WARNS:* ${warn ▰▰▱ |+ 1}/${war}
+*├▢ REASON:* ${text}
+*╰───────────────┄┈*`, null, { mentions: [who] }) 
 
-▢ *Admin:* ${name}
-▢ *Usuario:* @${who.split`@`[0]}
-▢ *Warns:* ${warn + 1}/${war}
-▢ *Reason:* ${text}`, null, { mentions: [who] }) 
             m.reply(`
 ⚠️ *caution* ⚠️
 You received a warning from an admin
