@@ -28,8 +28,8 @@ MAKE YOUR PAYMENT EXCLUSIVELY FOR SILVA MD BOT PROJECT
         m.chat,
         {
           requestPaymentMessage: {
-            currencyCodeIso4217: 'PKR',
-            amount1000: 2500,
+            currencyCodeIso4217: 'USD',
+            amount1000: 25000,
             requestFrom: m.sender,
             noteMessage: {
               extendedTextMessage: {
