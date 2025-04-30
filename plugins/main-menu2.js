@@ -42,30 +42,26 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     let greeting = ucapan()
     let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 
-    let str = `❤️ *_Hello ${name}, ${greeting}! Welcome to my menu!* 🥳
-╭═══〘 𝑺𝑰𝑳𝑽𝑨 𝑩𝑶𝑻 〙═══⊷❍
-┃✰│━━━❮❮ CMD LINE ❯❯━━━━━━
-┃✰│𝙽𝚊𝚖𝚎: ${global.author}
-┃✰│𝚃𝚘𝚝𝚊𝚕: 700+ Features
-┃✰│Network:LTE
-┃✰│ᴠᴇʀꜱɪᴏɴ: BETA
-┃✰│ᴏᴡɴᴇʀ : *𝕊𝕀𝕃𝕍𝔸*
-┃✰│ɴᴜᴍʙᴇʀ: 254743706010
-┃✰│HOSTER: *Silva Platform*
-┃✰│ᴍᴏᴅᴇ: *Unkown*
-┃✰│ᴘʀᴇғɪx: *Multi-Prefix*
-┃✰│Uptime: ${uptime}
-┃✰│Today's Date: ${date}
-┃✰│Current Time: ${wib}
-┃✰│──────────●●►
-┃✰│𝕏 https://x.com/@silva_african
-┃✰│   ▎▍▌▌▉▏▎▌▉▐▏▌▎
-┃✰│   ▎▍▌▌▉▏▎▌▉▐▏▌▎
-┃✰│   ©𝐒𝐈𝐋𝐕𝐀 𝐌𝐃 𝐁𝐎𝐓
-╰──────────────────
-Thank you for choosing silva md
-powered by Sylivanus❤️
-─═✧✧═─ 𝕊𝕀𝕃𝕍𝔸 𝔹𝕆𝕋 ─═✧✧═─`
+    let str = `❤️ *hey ${name}, ${greeting}! Welcome to my menu!* 🥳
+*╭═══〘 𝐒𝐓𝐀𝐑𝐊 𝐌𝐃 〙═══⊷❍*
+‎*┋ ⬡│━━❮❮ BUTTON CMD❯❯━━*
+‎*┋ ⬡│ɴᴀᴍᴇ : sᴛᴇᴀᴋ*
+‎*┋ ⬡│ᴛᴏᴛᴀʟ : 𝟶𝟶+ ғᴇᴀᴛᴜʀᴇs*
+‎*┋ ⬡│ɴᴇᴛᴡᴏʀᴋ : ʟᴛᴇ*
+‎*┋ ⬡│ᴠᴇʀsɪᴏɴ : ʙᴇᴛᴀ*
+‎*┋ ⬡│ᴏᴡɴᴇʀ : ᴀʟɪ ɪɴxɪᴅᴇ*
+‎*┋ ⬡│ʜᴏsᴛᴇʀ: sᴛᴀʀᴋ ᴘʟᴀᴛғᴏʀᴍ*
+‎*┋ ⬡│ᴍᴏᴅᴇ: UNKOWN*
+‎*┋ ⬡│ᴘʀᴇғɪx: MULTI-PREFIX*
+‎*┋ ⬡│ᴜᴘᴛɪᴍᴇ: ${uptime}*
+‎*┋ ⬡│ᴛᴏᴅᴀʏ's ᴅᴀᴛᴇ: ${date}*
+‎*┋ ⬡│ᴄᴜʀʀᴇɴᴛ ᴛɪᴍᴇ: ${wib}*
+‎*┋ ⬡│©𝐒𝐓𝐀𝐑𝐊 𝐌𝐃 𝐁𝐎𝐓*
+‎*╰──────────────────✑*
+*ᴛʜᴀɴᴋ ʏᴏᴜ ғᴏʀ ᴄʜᴏᴏsɪɴɢ sᴛᴀʀᴋ ᴍᴅ*
+*ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴀʟɪ ɪɴxɪᴅᴇ*
+*─═✧✧═─ 𝐒𝐓𝐀𝐑𝐊 𝐁𝐎𝐓 ─═✧✧═─*
+*ᴜsᴇ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴs*`
 
     let msg = generateWAMessageFromContent(m.chat, {
         viewOnceMessage: {
@@ -83,7 +79,7 @@ powered by Sylivanus❤️
                     }),
                     header: proto.Message.InteractiveMessage.Header.create({
                         ...(await prepareWAMessageMedia({
-                            image: { url: 'https://files.catbox.moe/8324jm.jpg' }
+                            image: { url: 'https://files.catbox.moe/z2880t.jpg' }
                         }, { upload: conn.waUploadToServer })),
                         title: null,
                         subtitle: null,
@@ -94,15 +90,15 @@ powered by Sylivanus❤️
                             {
                                  "name": "single_select",
                 "buttonParamsJson": 
-                                "{\"title\":\"TAP TO OPEN\",\"sections\":[{\"title\":\"HERE IS ALL LIST OF MENU\",\"highlight_label\":\"SILVA TECH INC\",\"rows\":[{\"header\":\"\",\"title\":\"💀 Bot Menu\",\"description\":\"The Bot's secret control panel. What's your command, oh great one?\",\"id\":\".botmenu\"},{\"header\":\"\",\"title\":\"📚 Owner Menu\",\"description\":\"The sacred scroll only for the chosen one. Yep, that's you, Boss!\",\"id\":\".ownermenu\"},{\"header\":\"\",\"title\":\"🧑‍🤝‍🧑 Group Menu\",\"description\":\"Group shenanigans central! Unite, chat, conquer!\",\"id\":\".groupmenu\"},{\"header\":\"\",\"title\":\"📥 Download Menu\",\"description\":\"'DL' stands for 'Delicious Loot'. Come grab your goodies!\",\"id\":\".dlmenu\"},{\"header\":\"\",\"title\":\"🎉 Fun Menu\",\"description\":\"The bot's party hat. Games, jokes and instant ROFLs. Let's get this party started!\",\"id\":\".funmenu\"},{\"header\":\"\",\"title\":\"💰 Economy Menu\",\"description\":\"Bling bling! Your personal vault of virtual economy. Spend or save? Choose wisely!\",\"id\":\".economymenu\"},{\"header\":\"\",\"title\":\"🎮 Game Menu\",\"description\":\"Enter the gaming arena. May the odds be ever in your favor!\",\"id\":\".gamemenu\"},{\"header\":\"\",\"title\":\"🎨 Sticker Menu\",\"description\":\"A rainbow of stickers for your inner artist. Make your chats pop!\",\"id\":\".stickermenu\"},{\"header\":\"\",\"title\":\"🧰 Tool Menu\",\"description\":\"Your handy-dandy toolkit. What's your pick, genius?\",\"id\":\".toolmenu\"},{\"header\":\"\",\"title\":\"🎩 Logo Menu\",\"description\":\"Create a logo that screams YOU. Or whispers. You choose the volume.\",\"id\":\".logomenu\"},{\"header\":\"\",\"title\":\"🌙 NSFW Menu\",\"description\":\"The After Dark menu. But remember, sharing adult secrets must be consent-based.\",\"id\":\".nsfwmenu\"}]}]}" 
+                                "{\"title\":\"TAP TO OPEN\",\"sections\":[{\"title\":\"HERE IS ALL LIST OF MENU\",\"highlight_label\":\"STARK TECH INC\",\"rows\":[{\"header\":\"\",\"title\":\"💀 BOT MENU\",\"description\":\"The Bot's secret control panel. What's your command, oh great one?\",\"id\":\".botmenu\"},{\"header\":\"\",\"title\":\"🍥 OWNER MENU\",\"description\":\"The sacred scroll only for the chosen one. Yep, that's you, Boss!\",\"id\":\".ownermenu\"},{\"header\":\"\",\"title\":\"📜 GROUP MENU\",\"description\":\"Group shenanigans central! Unite, chat, conquer!\",\"id\":\".groupmenu\"},{\"header\":\"\",\"title\":\"📥 DOWNLOAD MENU\",\"description\":\"'DL' stands for 'Delicious Loot'. Come grab your goodies!\",\"id\":\".dlmenu\"},{\"header\":\"\",\"title\":\"🎉 FUN MENU\",\"description\":\"The bot's party hat. Games, jokes and instant ROFLs. Let's get this party started!\",\"id\":\".funmenu\"},{\"header\":\"\",\"title\":\"💰 ECONOMY MENU\",\"description\":\"Bling bling! Your personal vault of virtual economy. Spend or save? Choose wisely!\",\"id\":\".economymenu\"},{\"header\":\"\",\"title\":\"🎮 GAMES MENU\",\"description\":\"Enter the gaming arena. May the odds be ever in your favor!\",\"id\":\".gamemenu\"},{\"header\":\"\",\"title\":\"🎨 STICKER MENU\",\"description\":\"A rainbow of stickers for your inner artist. Make your chats pop!\",\"id\":\".stickermenu\"},{\"header\":\"\",\"title\":\"🧰 TOOL MENU\",\"description\":\"Your handy-dandy toolkit. What's your pick, genius?\",\"id\":\".toolmenu\"},{\"header\":\"\",\"title\":\"🎩 LOGO MENU\",\"description\":\"Create a logo that screams YOU. Or whispers. You choose the volume.\",\"id\":\".logomenu\"},{\"header\":\"\",\"title\":\"🌙 NSFW MENU\",\"description\":\"The After Dark menu. But remember, sharing adult secrets must be consent-based.\",\"id\":\".nsfwmenu\"}]}]}" 
                 },
                             {
                                 "name": "quick_reply",
-                                "buttonParamsJson": "{\"display_text\":\"Main Menu 💖☠️\",\"id\":\".main\"}"
+                                "buttonParamsJson": "{\"display_text\":\"MAIN MENU 💖☠️\",\"id\":\".main\"}"
                             },
                              {
                                 "name": "quick_reply",
-                                "buttonParamsJson": "{\"display_text\":\"Owner✨❤️\",\"id\":\".owner\"}"
+                                "buttonParamsJson": "{\"display_text\":\"OWNER 👑\",\"url\":\"https://wa.me/message/TAMAX6V3VD2RG1\",\"merchant_url\":\"https://github.com/SilvaTechB\"}"
                             },
                             {
                                 "name": "quick_reply",
@@ -110,7 +106,7 @@ powered by Sylivanus❤️
                             },
                             {
                                 "name": "cta_url",
-                                "buttonParamsJson": "{\"display_text\":\"BOT SC 🎉\",\"url\":\"https://github.com/SilvaTechB/silva-md-bot\",\"merchant_url\":\"https://github.com/SilvaTechB\"}"
+                                "buttonParamsJson": "{\"display_text\":\"SUPPORT 🪀\",\"url\":\"https://whatsapp.com/channel/0029VaoRxGmJpe8lgCqT1T2h\",\"merchant_url\":\"https://github.com/SilvaTechB\"}"
                             }
                         ]
                     })
@@ -127,7 +123,7 @@ powered by Sylivanus❤️
         contextInfo: {
             mentionedJid: [m.sender],
             forwardingScore: 999,
-            isForwarded: true,
+            isForwarded: false,
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363200367779016@newsletter',
                 newsletterName: 'SILVA MD BOT 💖',
@@ -155,7 +151,7 @@ function clockString(ms) {
 }
 
 function ucapan() {
-    const time = moment.tz('Africa/Nairobi').format('HH')
+    const time = moment.tz('Asia/Karachi').format('HH')
     let res = "happy early in the day☀️"
     if (time >= 4) {
         res = "Good Morning 🥱"
