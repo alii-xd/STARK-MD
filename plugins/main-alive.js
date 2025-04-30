@@ -9,7 +9,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     key: {
       fromMe: false,
       participant: `${m.sender.split`@`[0]}@s.whatsapp.net`,
-      ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}),
+      ...(m.chat ? { remoteJid: '932003588997@s.whatsapp.net' } : {}),
     },
     message: {
       contactMessage: {
@@ -30,7 +30,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     contextInfo: {
       mentionedJid: [m.sender],
       externalAdReply: {
-        title: 'I AM ALIVE',
+        title: '🧃⋋̳͡⊱ 𝐈 𝐀𝐌 𝐀𝐋𝐈𝐕𝐄 𝐒𝐓𝐀𝐑𝐊 𝐌𝐃٭⳺֟፝͜⳻٭',
         body: '𝐒ʈαɣƙ 𝐌Ɗ',
         thumbnailUrl: img,
         sourceUrl: 'https://chat.whatsapp.com/F3sB3pR3tClBvVmlIkqDJp',
