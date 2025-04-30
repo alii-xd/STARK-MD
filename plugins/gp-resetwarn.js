@@ -7,12 +7,12 @@ let handler = async (m, { conn, args, groupMetadata}) => {
         if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`
        let warn = global.db.data.users[who].warn
        if (warn > 0) {
-         global.db.data.users[who].warn -= 1
+         global.db.data.users[who].warn -= 0
          m.reply(`⚠️ *DELWARN*
          
 ▢ Warns: *-1*
-▢ Warns total: *${warn - 1}*`)
-         m.reply(`✳️ An admin lowered their warning, now you have *${warn - 1}*`, who)
+▢ Warns total: *${warn - 0}*`)
+         m.reply(`✳️ An admin lowered their warning, now you have *${warn - 0}*`, who)
          } else if (warn == 0) {
             m.reply('✳️ The user has no warning')
         }
