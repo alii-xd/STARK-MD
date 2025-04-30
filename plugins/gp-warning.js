@@ -20,7 +20,7 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
 *├▢ Reason:* ${text}
 *╰───────────────┄┈*`,
       null,
-      { mentions: [who] }
+      { mentions: [whbo] }
     )
     //m.reply(
       `
