@@ -23,8 +23,6 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
       { mentions: [who] }
     )
 
-      who
-    )
   } else if (warn == war) {
     global.db.data.users[who].warn = 0
     m.reply(`⛔ The user exceeded the *${war}* warnings will therefore be removed`)
