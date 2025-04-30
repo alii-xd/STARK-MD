@@ -19,17 +19,8 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
 *├▢ Warns:* ${warn + 1}/${war}
 *├▢ Reason:* ${text}
 *╰───────────────┄┈*`,
-      null,
-      { mentions: [whbo] }
-    )
-    //m.reply(
-      `
-⚠️ *caution* ⚠️
-You received a warning from an admin
-
-▢ *Warns:* ${warn + 1}/${war} 
-if you receive *${war}* warnings you will be automatically removed from the group`,
-      who
+    
+    
     )
   } else if (warn == war) {
     global.db.data.users[who].warn = 0
