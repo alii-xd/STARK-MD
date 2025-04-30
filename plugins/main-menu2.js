@@ -16,7 +16,7 @@ import moment from 'moment-timezone'
 import { promises } from 'fs'
 import { join } from 'path'
 const time = moment.tz('Africa/Nairobi').format('HH')
-let wib = moment.tz('Africa/Nairobi').format('HH:mm:ss')
+let wib = moment.tz('Asia/Karachi').format('HH:mm:ss')
 
 let handler = async (m, { conn, usedPrefix, command }) => {
     let d = new Date(new Date + 3600000)
@@ -60,8 +60,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
 ‎*╰──────────────────✑*
 *ᴛʜᴀɴᴋ ʏᴏᴜ ғᴏʀ ᴄʜᴏᴏsɪɴɢ sᴛᴀʀᴋ ᴍᴅ*
 *ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴀʟɪ ɪɴxɪᴅᴇ*
-*─═✧✧═─ 𝐒𝐓𝐀𝐑𝐊 𝐁𝐎𝐓 ─═✧✧═─*
-*ᴜsᴇ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴs*`
+*─═✧═─ 𝐒𝐓𝐀𝐑𝐊 𝐁𝐎𝐓 ─═✧═─*`
 
     let msg = generateWAMessageFromContent(m.chat, {
         viewOnceMessage: {
@@ -90,7 +89,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
                             {
                                  "name": "single_select",
                 "buttonParamsJson": 
-                                "{\"title\":\"TAP TO OPEN\",\"sections\":[{\"title\":\"HERE IS ALL LIST OF MENU\",\"highlight_label\":\"STARK TECH INC\",\"rows\":[{\"header\":\"\",\"title\":\"💀 BOT MENU\",\"description\":\"The Bot's secret control panel. What's your command, oh great one?\",\"id\":\".botmenu\"},{\"header\":\"\",\"title\":\"🍥 OWNER MENU\",\"description\":\"The sacred scroll only for the chosen one. Yep, that's you, Boss!\",\"id\":\".ownermenu\"},{\"header\":\"\",\"title\":\"📜 GROUP MENU\",\"description\":\"Group shenanigans central! Unite, chat, conquer!\",\"id\":\".groupmenu\"},{\"header\":\"\",\"title\":\"📥 DOWNLOAD MENU\",\"description\":\"'DL' stands for 'Delicious Loot'. Come grab your goodies!\",\"id\":\".dlmenu\"},{\"header\":\"\",\"title\":\"🎉 FUN MENU\",\"description\":\"The bot's party hat. Games, jokes and instant ROFLs. Let's get this party started!\",\"id\":\".funmenu\"},{\"header\":\"\",\"title\":\"💰 ECONOMY MENU\",\"description\":\"Bling bling! Your personal vault of virtual economy. Spend or save? Choose wisely!\",\"id\":\".economymenu\"},{\"header\":\"\",\"title\":\"🎮 GAMES MENU\",\"description\":\"Enter the gaming arena. May the odds be ever in your favor!\",\"id\":\".gamemenu\"},{\"header\":\"\",\"title\":\"🎨 STICKER MENU\",\"description\":\"A rainbow of stickers for your inner artist. Make your chats pop!\",\"id\":\".stickermenu\"},{\"header\":\"\",\"title\":\"🧰 TOOL MENU\",\"description\":\"Your handy-dandy toolkit. What's your pick, genius?\",\"id\":\".toolmenu\"},{\"header\":\"\",\"title\":\"🎩 LOGO MENU\",\"description\":\"Create a logo that screams YOU. Or whispers. You choose the volume.\",\"id\":\".logomenu\"},{\"header\":\"\",\"title\":\"🌙 NSFW MENU\",\"description\":\"The After Dark menu. But remember, sharing adult secrets must be consent-based.\",\"id\":\".nsfwmenu\"}]}]}" 
+                                "{\"title\":\"TAP TO OPEN\",\"sections\":[{\"title\":\"BOT COMING SOON STARK MD\",\"highlight_label\":\"STARK TECH INC\",\"rows\":[{\"header\":\"\",\"title\":\"💀 BOT MENU\",\"description\":\"The Bot's secret control panel. What's your command, oh great one?\",\"id\":\".botmenu\"},{\"header\":\"\",\"title\":\"🍥 OWNER MENU\",\"description\":\"The sacred scroll only for the chosen one. Yep, that's you, Boss!\",\"id\":\".ownermenu\"},{\"header\":\"\",\"title\":\"📜 GROUP MENU\",\"description\":\"Group shenanigans central! Unite, chat, conquer!\",\"id\":\".groupmenu\"},{\"header\":\"\",\"title\":\"📥 DOWNLOAD MENU\",\"description\":\"'DL' stands for 'Delicious Loot'. Come grab your goodies!\",\"id\":\".dlmenu\"},{\"header\":\"\",\"title\":\"🎉 FUN MENU\",\"description\":\"The bot's party hat. Games, jokes and instant ROFLs. Let's get this party started!\",\"id\":\".funmenu\"},{\"header\":\"\",\"title\":\"💰 ECONOMY MENU\",\"description\":\"Bling bling! Your personal vault of virtual economy. Spend or save? Choose wisely!\",\"id\":\".economymenu\"},{\"header\":\"\",\"title\":\"🎮 GAMES MENU\",\"description\":\"Enter the gaming arena. May the odds be ever in your favor!\",\"id\":\".gamemenu\"},{\"header\":\"\",\"title\":\"🎨 STICKER MENU\",\"description\":\"A rainbow of stickers for your inner artist. Make your chats pop!\",\"id\":\".stickermenu\"},{\"header\":\"\",\"title\":\"🧰 TOOL MENU\",\"description\":\"Your handy-dandy toolkit. What's your pick, genius?\",\"id\":\".toolmenu\"},{\"header\":\"\",\"title\":\"🎩 LOGO MENU\",\"description\":\"Create a logo that screams YOU. Or whispers. You choose the volume.\",\"id\":\".logomenu\"},{\"header\":\"\",\"title\":\"🌙 NSFW MENU\",\"description\":\"The After Dark menu. But remember, sharing adult secrets must be consent-based.\",\"id\":\".nsfwmenu\"}]}]}" 
                 },
                             {
                                 "name": "quick_reply",
@@ -98,15 +97,12 @@ let handler = async (m, { conn, usedPrefix, command }) => {
                             },
                              {
                                 "name": "quick_reply",
-                                "buttonParamsJson": "{\"display_text\":\"OWNER 👑\",\"url\":\"https://wa.me/message/TAMAX6V3VD2RG1\",\"merchant_url\":\"https://github.com/SilvaTechB\"}"
+                                "buttonParamsJson": "{\"display_text\":\"OWNER 👑\",\"url\":\"https://api.whatsapp.com/send?phone=+923003588997&text=\",\"merchant_url\":\"https://api.whatsapp.com/send?phone=+923003588997&text=\"}"
                             },
                             {
-                                "name": "quick_reply",
-                                "buttonParamsJson": "{\"display_text\":\"SECOND MENU 📲\",\"id\":\".menu2\"}"
-                            },
-                            {
+                          
                                 "name": "cta_url",
-                                "buttonParamsJson": "{\"display_text\":\"SUPPORT 🪀\",\"url\":\"https://whatsapp.com/channel/0029VaoRxGmJpe8lgCqT1T2h\",\"merchant_url\":\"https://github.com/SilvaTechB\"}"
+                                "buttonParamsJson": "{\"display_text\":\"SUPPORT 🪀\",\"url\":\"https://whatsapp.com/channel/0029VaoRxGmJpe8lgCqT1T2h\",\"merchant_url\":\"https://api.whatsapp.com/send?phone=+923003588997&text=\"}"
                             }
                         ]
                     })
