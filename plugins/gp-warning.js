@@ -22,7 +22,7 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
         null,
       { mentions: [who] }
     )
-m.reply(`⚠️ *caution* ⚠️You received a warning from an admin▢ *Warns:* ${warn + 1}/${war} if you receive *${war}* warnings you will be automatically removed from the group`,
+h.reply(`hh`,
       who
     )
   } else if (warn == war) {
