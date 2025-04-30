@@ -35,7 +35,7 @@ if you receive *${war}* warnings you will be automatically removed from the grou
 }
 handler.help = ['warn @user']
 handler.tags = ['group']
-handler.command = ['warn'] 
+handler.command = ['warrn'] 
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
