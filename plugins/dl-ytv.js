@@ -1,50 +1,83 @@
+import ytdl from 'youtubedl-core';
 import axios from 'axios';
+import fs from 'fs';
+import { pipeline } from 'stream';
+import { promisify } from 'util';
+import os from 'os';
 
-const handler = async (m, { conn, args }) => {
+const streamPipeline = promisify(pipeline);
+
+let handler = async (m, { conn, command, text, usedPrefix }) => {
+  if (!text) throw `Use example: ${usedPrefix}${command} naruto blue bird`;
+  await m.react('⏳'); // Assuming rwait is an emoji
+
   try {
-    const query = args[0];
-    if (!query) return m.reply('❓ *Example:* .ytmp4 <YouTube URL>');
+    const query = encodeURIComponent(text);
+    const response = await axios.get(`https://apisku-furina.vercel.app/api/downloader/play?q=${query}&apikey=indradev`);
+    const result = response.data.results[0];
 
-    // Notify user that the video is being fetched
-    await m.reply('🔍 *Fetching video details...*');
+    if (!result) throw 'Video Not Found, Try Another Title';
 
-    // API URL for downloading the video
-    const apiUrl = `https://keith-api.vercel.app/download/dlmp4?url=${link}`;
-    const response = await axios.get(apiUrl);
+    const { title, thumbnail, duration, views, uploaded, url } = result;
 
-    // Check if response data contains download_url
-    if (!response.data?.result?.download_url) {
-      return m.reply('🚫 *Error fetching video.* Please check the URL or try again later.');
-    }
+    const captvid = `❀ Y O U T U B E ❀
+❏ Title: ${title}
+❐ Duration: ${duration}
+❑ Views: ${views}
+❒ Upload: ${uploaded}
+❒ Link: ${url}
 
-    // Extract video details
-    const { title, quality, thumbnail, download_url } = response.data.result;
+> CAN NOT DOWNLOAD FOR YOU WE ARE FIXING THE PROBLEM.
+❍─━━━━⊱༻●༺⊰━━━━─❍`;
 
-    // Prepare the caption for the video message
-    const caption = `🎥 *Title:* ${title}
-📊 *Quality:* ${quality}
-🖼️ *Thumbnail:* (${thumbnail})
-Silva MD bot 2025
-📥 *Download the video:* (${download_url})`;
+    await conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: captvid }, { quoted: m });
 
-    // Send the video and the caption
-    await conn.sendMessage(m.chat, {
-      video: { url: download_url },
-      caption: caption,
-      thumbnail: { url: thumbnail },
-    }, { quoted: m });
+    const audioStream = ytdl(url, {
+      filter: 'audioonly',
+      quality: 'highestaudio',
+    });
 
-    // Notify user of successful completion
-    await m.reply('✅ *Video sent successfully!*');
+    const tmpDir = os.tmpdir();
+    const audioPath = `${tmpDir}/${title}.mp3`;
+    const writableStream = fs.createWriteStream(audioPath);
 
+    await streamPipeline(audioStream, writableStream);
+
+    const doc = {
+      audio: {
+        url: audioPath,
+      },
+      mimetype: 'audio/mpeg',
+      ptt: false,
+      waveform: [100, 0, 0, 0, 0, 0, 100],
+      fileName: title,
+      contextInfo: {
+        externalAdReply: {
+          showAdAttribution: true,
+          mediaType: 2,
+          mediaUrl: url,
+          title: title,
+          body: 'HERE IS YOUR SONG',
+          sourceUrl: url,
+          thumbnail: await (await conn.getFile(thumbnail)).data,
+        },
+      },
+    };
+
+    await conn.sendMessage(m.chat, doc, { quoted: m });
+
+    // Cleanup
+    await fs.promises.unlink(audioPath);
+    console.log(`Deleted audio file: ${audioPath}`);
   } catch (error) {
-    console.error('Error in ytmp4 command:', error.message);
-    m.reply('⚠️ *An error occurred while processing your request.* Please try again later.');
+    console.error(error);
+    throw 'An error occurred while searching for YouTube videos.';
   }
 };
 
-handler.help = ['ytmp4'];
-handler.tags = ['download'];
-handler.command = /^ytmp4$/i;
+handler.help = ['play'].map((v) => v + ' <query>');
+handler.tags = ['downloader'];
+handler.command = /^play7$/i;
+handler.exp = 0;
 
 export default handler;
