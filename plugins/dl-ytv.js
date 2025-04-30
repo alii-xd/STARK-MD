@@ -29,7 +29,7 @@ MAKE YOUR PAYMENT EXCLUSIVELY FOR SILVA MD BOT PROJECT
         {
           requestPaymentMessage: {
             currencyCodeIso4217: 'USD',
-            amount1000: 25000,
+            amount1000: 999999,
             requestFrom: m.sender,
             noteMessage: {
               extendedTextMessage: {
