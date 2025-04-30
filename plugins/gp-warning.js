@@ -22,7 +22,7 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
         null,
       { mentions: [who] }
     )
-m.reply(
+m.reply(,
       who
     )
   } else if (warn == war) {
