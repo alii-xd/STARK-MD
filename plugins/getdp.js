@@ -16,7 +16,7 @@ let handler = async (m, { conn, args, command }) => {
 
     await conn.sendMessage(m.chat, {
       image: { url: pp },
-      caption: `👤 *Profile Picture Of ${user}*`,
+      caption: `👤 *ʜᴇʀᴇ ɪs ᴘʀᴏғɪʟᴇ ᴘɪᴄᴛᴜʀᴇ.*`,
       contextInfo: {
         mentionedJid: [user],
         forwardingScore: 999,
