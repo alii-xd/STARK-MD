@@ -1,24 +1,22 @@
-let handler = async(m, { conn, usedPrefix, command }) => {
-  if (/^self$/i.test(command)) {
-    if (settings.self == true) conn.sendButton(m.chat, `already ${command} from earlier boss!`, wm, 'Self', usedPrefix + 'self', m)
-    if (!settings.self == true) {
-      await conn.sendButton(m.chat, `Successfully set to ${command}!`, wm, 'Public', usedPrefix + 'public', m)
-      settings.self = true
-    }
-  }
-  if (/^publi(c|k)$/i.test(command)) {
-    if (settings.self == false) conn.sendButton(m.chat, `already ${command} from earlier boss!`, wm, 'Self', usedPrefix + 'self', m)
-    if (!settings.self == false) {
-      await conn.sendButton(m.chat, `Successfully set to ${command}!`, wm, 'Self', usedPrefix + 'self', m)
-      settings.self = false
+let handler = async(m, { conn, command }) => {
+  try {
+  let who
+  if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted.sender
+  else who = m.quoted.sender ? m.quoted.sender : m.sender
+  let name = await conn.getName(who)
+  m.reply(name)
+  } catch {
+    try {
+    let who = m.quoted ? m.quoted.sender : m.sender
+    let name = await conn.getName(who)
+    m.reply(name)
+  } catch {
+    throw `sorry cant try anything else⍨`
     }
   }
 }
-
-handler.help = ["self", "public"]
-handler.tags = ["owner"]
-handler.command = /^(self|publi(c|k))/i
-
-handler.rowner = true 
+handler.help = ['getname <@tag/reply>']
+handler.tags = ['fun']
+handler.command = /^(get)?name?a?$/i
 
 module.exports = handler
