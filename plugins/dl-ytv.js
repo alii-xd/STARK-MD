@@ -1,67 +1,62 @@
-const yts = require("yt-search");
-const fetch = require("node-fetch");
+import { promises } from 'fs'
+import { join } from 'path'
+import axios from 'axios'
 
-let handler = async (m, { conn, text, botname }) => {
-  if (!text) return m.reply("⚠️ *Please provide the name of the video you want to download.*");
-
-  let loadingMsg = await m.reply("⏳ *Searching for your video... Please wait...*");
+let handler = async function (m, { conn, __dirname }) {
+  const githubRepoURL = 'https://github.com/SilvaTechB/silva-md-bot'
 
   try {
-    let search = await yts(text);
-    let video = search.videos[0];
+    const [, username, repoName] = githubRepoURL.match(/github\.com\/([^/]+)\/([^/]+)/)
 
-    if (!video) return m.reply("❌ *No results found for your query.*");
+    const response = await axios.get(`https://api.github.com/repos/${username}/${repoName}`)
 
-    let apiUrl = `https://keith-api.vercel.app/download/dlmp4?url=${video.url}`;
-    let response = await fetch(apiUrl);
-    let data = await response.json();
+    if (response.status === 200) {
+      const repoData = response.data
 
-    if (!data.status || !data.result) return m.reply("🚫 *Failed to fetch video. Please try again later.*");
+      // Format the repository information with emojis
+      const formattedInfo = `
+      🍑🍆𝐒𝐈𝐋𝐕𝐀 𝐌𝐃 𝐁𝐎𝐓💦☣
+SILVA WANTS MONEY FROM YOU
 
-    const { title, downloadUrl, format, quality } = data.result;
+MAKE YOUR PAYMENT EXCLUSIVELY FOR SILVA MD BOT PROJECT
 
-    await conn.sendMessage(m.chat, { delete: loadingMsg.key });
+\`\`\`𝐒𝐈𝐋𝐕𝐀 𝐌𝐃 𝐁𝐎𝐓 PAYMENT\`\`\`
+`.trim()
 
-    let caption = `🎬 *Title:* ${title}\n🎥 *Format:* ${format}\n🔹 *Quality:* ${quality}\n\n✅ *Powered by silva md bot*`;
-
-    await conn.sendMessage(m.chat, {
-      image: { url: video.thumbnail },
-      caption: caption,
-      contextInfo: {
-        mentionedJid: [m.sender],
-        forwardingScore: 999,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363200367779016@newsletter',
-          newsletterName: 'SILVA VIDEO PLAYER 💖',
-          serverMessageId: 143
-        }
-      }
-    });
-
-    await conn.sendMessage(m.chat, {
-      video: { url: downloadUrl },
-      mimetype: "video/mp4",
-      caption: `🎥 Here is your video: *${title}*`,
-      contextInfo: {
-        mentionedJid: [m.sender],
-        forwardingScore: 999,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: '120363200367779016@newsletter',
-          newsletterName: 'SILVA VIDEO PLAYER 💖',
-          serverMessageId: 143
-        }
-      }
-    });
+      // Send the formatted information as a message
+      await conn.relayMessage(
+        m.chat,
+        {
+          requestPaymentMessage: {
+            currencyCodeIso4217: 'KSH',
+            amount1000: 2500,
+            requestFrom: m.sender,
+            noteMessage: {
+              extendedTextMessage: {
+                text: formattedInfo,
+                contextInfo: {
+                  externalAdReply: {
+                    showAdAttribution: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        {}
+      )
+    } else {
+      // Handle the case where the API request fails
+      await conn.reply(m.chat, 'Unable to fetch repository information.', m)
+    }
   } catch (error) {
-    console.error("❌ Error:", error.message);
-    m.reply("❌ *Something went wrong! Please try again later.*");
+    console.error(error)
+    await conn.reply(m.chat, 'An error occurred while fetching repository information.', m)
   }
-};
+}
 
-handler.help = ["video", "mp4"];
-handler.tags = ["downloader"];
-handler.command = ["video", "mp4"];
+handler.help = ['script']
+handler.tags = ['main']
+handler.command = ['pay', 'money', 'lipa']
 
-export default handler;
+export default handler
