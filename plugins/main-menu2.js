@@ -74,7 +74,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
                         text: str
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
-                        text: "Use The Below Buttons"
+                        text: "*ᴜsᴇ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴs*"
                     }),
                     header: proto.Message.InteractiveMessage.Header.create({
                         ...(await prepareWAMessageMedia({
@@ -93,16 +93,16 @@ let handler = async (m, { conn, usedPrefix, command }) => {
                 },
                             {
                                 "name": "quick_reply",
-                                "buttonParamsJson": "{\"display_text\":\"MAIN MENU 💖☠️\",\"id\":\".main\"}"
+                                "buttonParamsJson": "{\"display_text\":\"📍 PING\",\"id\":\".main\"}"
                             },
                              {
                                 "name": "quick_reply",
-                                "buttonParamsJson": "{\"display_text\":\"OWNER 👑\",\"url\":\"https://api.whatsapp.com/send?phone=+923003588997&text=\",\"merchant_url\":\"https://api.whatsapp.com/send?phone=+923003588997&text=\"}"
+                                "buttonParamsJson": "{\"display_text\":\"👑 OWNER \",\"url\":\"https://api.whatsapp.com/send?phone=+923003588997&text=\",\"merchant_url\":\"https://api.whatsapp.com/send?phone=+923003588997&text=\"}"
                             },
                             {
                           
                                 "name": "cta_url",
-                                "buttonParamsJson": "{\"display_text\":\"SUPPORT 🪀\",\"url\":\"https://whatsapp.com/channel/0029VaoRxGmJpe8lgCqT1T2h\",\"merchant_url\":\"https://api.whatsapp.com/send?phone=+923003588997&text=\"}"
+                                "buttonParamsJson": "{\"display_text\":\"🪀 SUPPORT\",\"url\":\"https://whatsapp.com/channel/0029VaoRxGmJpe8lgCqT1T2h\",\"merchant_url\":\"https://api.whatsapp.com/send?phone=+923003588997&text=\"}"
                             }
                         ]
                     })
