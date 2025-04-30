@@ -12,12 +12,11 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
     m.reply(
       `
 *⌈⚠️ WARNING ⌋*
-
 *╭───────────────┄┈*
 *├▢ Admin:* ${name}
 *├▢ User:* @${who.split`@`[0]}
 *├▢ Warns:* ${warn + 1}/${war}
-*├▢ Reason:* ${text} null,
+*├▢ Reason:* ${text}
 *╰───────────────┄┈*`,
         null,
       { mentions: [who] }
