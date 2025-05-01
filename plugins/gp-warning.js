@@ -28,7 +28,7 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
     await time(3000)
     await conn.groupParticipantsUpdate(m.chat, [who], 'remove')
   //  m.reply(
-    //  `♻️ You were removed from the group *${groupMetadata.subject}* because you have been warned *${war}* times`,
+      `♻️ You were removed from the group *${groupMetadata.subject}* because you have been warned *${war}* times`,
       who
     )
   }
