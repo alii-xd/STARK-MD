@@ -27,10 +27,8 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
     m.reply(`⛔ The user exceeded the *${war}* warnings will therefore be removed`)
     await time(3000)
     await conn.groupParticipantsUpdate(m.chat, [who], 'remove')
-  //  m.reply(
-      `♻️ You were removed from the group *${groupMetadata.subject}* because you have been warned *${war}* times`,
-      who
-    )
+
+    
   }
 }
 handler.help = ['warn @user']
