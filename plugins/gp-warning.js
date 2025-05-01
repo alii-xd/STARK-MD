@@ -22,7 +22,7 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
 *│👮‍♂️ ADMIN:* ${name}
 *│👤 USER:* @${who.split`@`[0]}
 *│⚠️ WARNS:* ${warn + 1}/${war}
-*│📝 REASON:* ${text || "No reason provided"}
+*│📝 REASON:* ${text||"No reason provided"}
 *╰────────────────┄┈*
 `, null, { mentions: [who] });
 
