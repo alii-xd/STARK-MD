@@ -26,7 +26,7 @@ m.react('⏳')
       externalAdReply: {
       title: "𝐑𝐔𝐍𝐍𝐈𝐍𝐆 💨",
       body: "ʀᴜɴɪɴɢ sɪɴᴄᴇ",
-      thumbnailUrl: "https://files.catbox.moe/2sssq3.jpg",
+      thumbnailUrl: 'https://files.catbox.moe/2sssq3.jpg',
       sourceUrl: 'https://github.com/itx-alii-raza/ALI-MD',
       mediaType: 1,
       renderLargerThumbnail: true
