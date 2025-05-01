@@ -21,7 +21,7 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
 *╭────────────────┄┈*
 *│👮‍♂️ ADMIN:* ${name}
 *│👤 USER:* @${who.split`@`[0]}
-*│⚠️ WARNS:* ▰▰▱${warn + 1}/${war}
+*│⚠️ WARNS:* ▰▰▱ ${warn + 1}/${war}
 *│📝 REASON:* No reason provided
 *╰────────────────┄┈*
 `, null, { mentions: [who] });
