@@ -1,5 +1,5 @@
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-let pp = ''
+let pp = 'https://files.catbox.moe/l2t3e0.jpg'
 m.react('⏳')
 	let _muptime
     if (process.send) {
@@ -26,7 +26,7 @@ m.react('⏳')
       externalAdReply: {
       title: "𝐑𝐔𝐍𝐍𝐈𝐍𝐆 💨",
       body: "ʀᴜɴɪɴɢ sɪɴᴄᴇ",
-      mediaUrl: "https://files.catbox.moe/l2t3e0.jpg", // Static image URL
+      thumbnailUrl: pp,
       sourceUrl: 'https://github.com/itx-alii-raza/ALI-MD',
       mediaType: 1,
       renderLargerThumbnail: true
