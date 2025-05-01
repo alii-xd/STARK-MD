@@ -6,7 +6,7 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
     } else {
         who = m.chat;
     }
-    if (!who) throw `⚠️ *Tag or mention someone!*\n\n💡 *Example:* ${usedPrefix + command} @user`;
+    if (!who) throw `⚠️ *Tag or mention someone!*\n\n📍 *Example:* ${usedPrefix + command} @user`;
 
     if (!(who in global.db.data.users)) throw `⚠️ *User not found in the database!*`;
 
@@ -21,8 +21,8 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
 *╭────────────────┄┈*
 *│👮‍♂️ ADMIN:* ${name}
 *│👤 USER:* @${who.split`@`[0]}
-*│⚠️ WARNS:* ${warn + 1}/${war}
-*│📝 REASON:* ${text||"No reason provided"}
+*│⚠️ WARNS:* ▰▰▱${warn + 1}/${war}
+*│📝 REASON:* No reason provided
 *╰────────────────┄┈*
 `, null, { mentions: [who] });
 
