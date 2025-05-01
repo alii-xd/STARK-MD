@@ -10,7 +10,7 @@ m.react('⏳')
       }) * 1000
     }
     let muptime = clockString(_muptime)
-    let str = `🍭 sᴛᴀʀᴋ ᴍᴅ ᴜᴘᴛɪᴍᴇ\n\n🧃 ʙᴏᴛ ᴀᴄᴛɪᴠᴇ ᴅᴜʀᴀᴛɪᴏɴ\n *${muptime}⏰*`
+    let str = `*🍭 sᴛᴀʀᴋ ᴍᴅ ᴜᴘᴛɪᴍᴇ*\n\n*🧃 ʙᴏᴛ ᴀᴄᴛɪᴠᴇ ᴅᴜʀᴀᴛɪᴏɴ*\n *${muptime}⏰*`
     conn.sendMessage(m.chat, {
       text: str,
       contextInfo: {
@@ -24,12 +24,12 @@ m.react('⏳')
             },
       forwardingScore: 999,
       externalAdReply: {
-      title: "🧃⋋̳͡⊱𝐒𝐓𝐀𝐑𝐊 𝐌𝐃٭⳺֟፝͜⳻٭",
+      title: "𝐑𝐔𝐍𝐍𝐈𝐍𝐆 💨",
       body: "ʀᴜɴɪɴɢ sɪɴᴄᴇ",
-      thumbnailUrl: pp,
-      sourceUrl: '',
+      thumbnailUrl: "https://files.catbox.moe/2sssq3.jpg",
+      sourceUrl: 'https://github.com/itx-alii-raza/ALI-MD',
       mediaType: 1,
-      renderLargerThumbnail: false
+      renderLargerThumbnail: true
       }}})
       m.react('✅')
 }
