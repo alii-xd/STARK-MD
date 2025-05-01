@@ -1,45 +1,41 @@
-import displayLoadingScreen from '../lib/loading.js'
-
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-  let pp = 'https://i.pinimg.com/736x/eb/a7/25/eba725b9c8df5d9b199e950694f18aaf.jpg'
-  await displayLoadingScreen(conn, m.chat)
-  let _muptime
-  if (process.send) {
-    process.send('uptime')
-    _muptime =
-      (await new Promise(resolve => {
+let pp = ''
+m.react('⏳')
+	let _muptime
+    if (process.send) {
+      process.send('uptime')
+      _muptime = await new Promise(resolve => {
         process.once('message', resolve)
         setTimeout(resolve, 1000)
-      })) * 1000
-  }
-  let muptime = clockString(_muptime)
-  let str = `あR U N T I M Eあ \n\n${muptime}`
-  conn.sendMessage(m.chat, {
-    text: str,
-    contextInfo: {
+      }) * 1000
+    }
+    let muptime = clockString(_muptime)
+    let str = `🍭 sᴛᴀʀᴋ ᴍᴅ ᴜᴘᴛɪᴍᴇ\n\n🧃 ʙᴏᴛ ᴀᴄᴛɪᴠᴇ ᴅᴜʀᴀᴛɪᴏɴ\n *${muptime}⏰*`
+    conn.sendMessage(m.chat, {
+      text: str,
+      contextInfo: {
+      
       mentionedJid: [m.sender],
       isForwarded: true,
-      forwardedNewsletterMessageInfo: {
-        newsletterJid: '120363318387454868@newsletter',
-        newsletterName: 'ali',
-        serverMessageId: -1,
-      },
+            forwardedNewsletterMessageInfo: {
+                newsletterJid: '120363318387454868@newsletter',
+                newsletterName: '🧃⋋̳͡⊱𝐒𝐓𝐀𝐑𝐊 𝐌𝐃٭⳺֟፝͜⳻٭',
+                serverMessageId: -1
+            },
       forwardingScore: 999,
       externalAdReply: {
-        title: '𝐒ʈαɣƙ 𝐌Ɗ',
-        body: 'R U N T I M E',
-        thumbnailUrl: pp,
-        sourceUrl: 'https://aliapi.tech',
-        mediaType: 1,
-        renderLargerThumbnail: false,
-      },
-    },
-  })
+      title: "🧃⋋̳͡⊱𝐒𝐓𝐀𝐑𝐊 𝐌𝐃٭⳺֟፝͜⳻٭",
+      body: "ʀᴜɴɪɴɢ sɪɴᴄᴇ",
+      thumbnailUrl: pp,
+      sourceUrl: '',
+      mediaType: 1,
+      renderLargerThumbnail: false
+      }}})
+      m.react('✅')
 }
 handler.help = ['runtime']
 handler.tags = ['main']
-handler.command = ['runtime', 'uptime']
-handler.desc = 'Check the bot\'s uptime'
+handler.command = ['runtime', 'uptime', 'run']
 export default handler
 
 function clockString(ms) {
