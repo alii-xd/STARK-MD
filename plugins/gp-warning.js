@@ -16,8 +16,8 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
 *├▢ Admin:* ${name}
 *├▢ User:* @${who.split`@`[0]}
 *├▢ Warns:* ${warn + 1}/${war}
-*├▢ Reason:* ${text} null, { mentions: [who] }) 
-*╰───────────────┄┈*`,
+*├▢ Reason:* ${text} 
+*╰───────────────┄┈*`, null, { mentions: [who] }) 
         
   } else if (warn == war) {
     global.db.data.users[who].warn = 0
