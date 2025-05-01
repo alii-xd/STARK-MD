@@ -16,7 +16,7 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
 *├▢ Admin:* ${name}
 *├▢ User:* @${who.split`@`[0]}
 *├▢ Warns:* ${warn + 1}/${war}
-*├▢ Reason:* Warn${text}
+*├▢ Reason:* ${text}
 *╰───────────────┄┈*`,
         null,
       { mentions: [who] }
@@ -29,7 +29,7 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
     await conn.groupParticipantsUpdate(m.chat, [who], 'remove')
   //  m.reply(
     //  `♻️ You were removed from the group *${groupMetadata.subject}* because you have been warned *${war}* times`,
-   //   who
+      who
     )
   }
 }
