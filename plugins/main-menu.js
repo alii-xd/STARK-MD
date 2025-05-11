@@ -1,348 +1,844 @@
-import fs from 'fs'
-import fetch from 'node-fetch'
-import { xpRange } from '../lib/levelling.js'
-import { promises } from 'fs'
-import { join } from 'path'
+let handler = async (m, { conn, usedPrefix, command }) => {
+  let who = m.quoted
+    ? m.quoted.sender
+    : m.mentionedJid && m.mentionedJid[0]
+      ? m.mentionedJid[0]
+      : m.fromMe
+        ? conn.user.jid
+        : m.sender
+  if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`
 
-let handler = async (m, { conn, usedPrefix, usedPrefix: _p, __dirname, text, command }) => {
-    try {
-    let { exp, diamantes, level, role } = global.db.data.users[m.sender]
-    let { min, xp, max } = xpRange(level, global.multiplier)
-    let name = await conn.getName(m.sender)
-    exp = exp || 'Desconocida';
-    role = role || 'Aldeano';
+  let pp = 'https://qu.ax/Umovs.jpg'
+  let more = String.fromCharCode(8206)
+  let readMore = more.repeat(850)
 
-        const _uptime = process.uptime() * 1000;
-    const uptime = clockString(_uptime);
+  let lkr
+  switch (command) {
+    case 'listmenu':
+    case 'menulist':
+      lkr ='*Get ready for the ride, here are your ticket options:*\n\n' +
+        '🌅 *' +
+        usedPrefix +
+        "botmenu* - The Bot's secret control panel.\n\n" +
+        '🖲️ *' +
+        usedPrefix +
+        "ownermenu* - Yep, that's for you, Boss!\n\n" +
+        '🛫 *' +
+        usedPrefix +
+        'groupmenu* - Groups to unite people.\n\n' +
+        '🗂️ *' +
+        usedPrefix +
+        "dlmenu* - 'DL' stands for 'Delicious Loot'.\n\n" +
+        '🎭 *' +
+        usedPrefix +
+        "funmenu* - The bot's party hat. Games, jokes and instant ROFLs.\n\n" +
+        '💵 *' +
+        usedPrefix +
+        'economy* - Your personal vault of virtual economy.\n\n' +
+        '🎮 *' +
+        usedPrefix +
+        'gamemenu* - Enter the gaming arena.\n\n' +
+        '🫐 *' +
+        usedPrefix +
+        'stickermenu* - A rainbow of stickers.\n\n' +
+        '🪙 *' +
+        usedPrefix +
+        "toolsmenu* - Your handy-dandy toolkit.\n\n" +
+        '🧲 *' +
+        usedPrefix +
+        'logomenu* - Create a logo that screams You.\n\n' +
+        '💟 *' +
+        usedPrefix +
+        'nsfwmenu* - The After Dark menu.\n\n' +
+        '🌀 *' +
+        usedPrefix +
+        'aimenu* - Your Personal Artificial Intelligence Copilots.\n\n' +
+        '🎧 *' +
+        usedPrefix +
+        'aeditor* - Tune The Mp3/Audio As You Wish.\n\n' +
+         '🎉 *' +
+        usedPrefix +
+        'animemenu* - Animated Images,Stickers and Videos.\n\n' +
+         '🍒 *' +
+        usedPrefix +
+        'reactions* - Anime reactions menu for group.\n\n' +
+        '🪁 *' +
+        usedPrefix +
+        'infoanime* - Full Information About Animes Like imdb.\n\n' +
+        '💡 *' +
+        usedPrefix +
+        'imagen* - Create Images and designs based on your thoughts/prompts.\n\n' +
+        '🃏 *' +
+        usedPrefix +
+        'randompic* - Random Images you might like and love.\n\n' +
+        '🏖️ *' +
+        usedPrefix +
+        'textpro* - Generate Beautiful Logos Using Text Of Your Choice.\n\n' +
+        '🎥 *' +
+        usedPrefix +
+        'randomvid* - Random Videos you might like and love.\n\n' +
+        '🖍️ *' +
+        usedPrefix +
+        'fancy* - Fancy text generator Menu.' 
+        break
 
-    let totalreg = Object.keys(global.db.data.users).length
-    let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length
+    case 'botmenu':
+      lkr = `
+╭───『 *BOT* 』─❍
+◈ • *allmenu*
+◈ • *alive*
+◈ • *autoreact*
+◈ • *blocklist*
+◈ • *botinfo*
+◈ • *donate*
+◈ • *gita*
+◈ • *groups*
+◈ • *language*
+◈ • *listmenu*
+◈ • *listprem*
+◈ • *listrent*
+◈ • *menu*
+◈ • *menu2*
+◈ • *menu3*
+◈ • *menu4*
+◈ • *mrcs*
+◈ • *owner*
+◈ • *ping*
+◈ • *quran*
+◈ • *rentbot*
+◈ • *runtime*
+◈ • *server*
+◈ • *speedtest*
+◈ • *stoprent*
+◈ • *uptime*
+╰─────────❍` //
+      break
+      case 'aimenu':
+      lkr=`
+╭───『 *AI* 』─❍
+◈ • *ai*
+◈ • *blackbox*
+◈ • *blackpink*
+◈ • *bro*
+◈ • *chatgpt*
+◈ • *fact*
+◈ • *google*
+◈ • *googleit*
+◈ • *gimage*
+◈ • *gpt4*
+◈ • *travel*
+◈ • *why*
+╰─────────❍` //   
+ break
 
-        await m.react('💙')
-        let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-        let perfil = await conn.profilePictureUrl(who, 'image').catch(_ => 'https://files.catbox.moe/pk3xxk.jpg')
+ case 'logosmaker':
+ case 'ephoto':
+ case 'textpro':
+      lkr=`
+╭───『 *TEXTPRO* 』─❍
+◈ • *3dsilver*
+◈ • *balon*
+◈ • *blackpink*
+◈ • *color*
+◈ • *circle*
+◈ • *cubic*
+◈ • *foggy*
+◈ • *galaxy*
+◈ • *galaxy2*
+◈ • *gaming*
+◈ • *gold*
+◈ • *golden*
+◈ • *gsilver*
+◈ • *hacker*
+◈ • *jewel*
+◈ • *logomaker*
+◈ • *matrix*
+◈ • *metal*
+◈ • *metallic*
+◈ • *mascot*
+◈ • *nigeria*
+◈ • *papercut*
+◈ • *sand*
+◈ • *splat*
+◈ • *snake*
+◈ • *star*
+◈ • *typo*
+◈ • *wgalaxy*
+◈ • *wings*
+╰─────────❍` //
+ break
+      case 'imagen':
+      case 'imagenai':
+      lkr=`
+╭───『 *IMAGEN* 』─❍
+◈ • *animefy*
+◈ • *cartoon*
+◈ • *dalle*
+◈ • *hercai-lexica*
+◈ • *imagev3*
+◈ • *lexica*
+◈ • *prodia*
+◈ • *raava*
+◈ • *shonin*
+◈ • *simurg*
+◈ • *v2beta*
+╰─────────❍` //
+ break
+    case 'ownermenu':
+      lkr = `
+╭───『 *OWNER* 』─❍
+◈ • *addowner*
+◈ • *addprem*
+◈ • *addsudo*
+◈ • *afk*
+◈ • *allow*
+◈ • *allvars*
+◈ • *autoeract*
+◈ • *banchat*
+◈ • *ban*
+◈ • *banuser*
+◈ • *broadcast*
+◈ • *broadcastgc*
+◈ • *clearchat*
+◈ • *cleartmp*
+◈ • *delcmd*
+◈ • *delowner*
+◈ • *delprem*
+◈ • *delsudo*
+◈ • *enable*
+◈ • *fakereply*
+◈ • *fullpp*
+◈ • *getfile*
+◈ • *getmsg*
+◈ • *getplugin*
+◈ • *intro*
+◈ • *inspect*
+◈ • *join*
+◈ • *listban*
+◈ • *listcmd*
+◈ • *listplugins*
+◈ • *logout*
+◈ • *readviewonce*
+◈ • *remove*
+◈ • *restart*
+◈ • *save*
+◈ • *savecontact*
+◈ • *savefile*
+◈ • *setppbot*
+◈ • *setprefix*
+◈ • *setprivacy*
+◈ • *unban*
+◈ • *unbanuser*
+◈ • *unbanchat*
+◈ • *update*
+◈ • *var*
+◈ • *resetprefix*
+╰─────────❍` //
+      break
+      case 'randompic':
+      lkr = `
+╭───『 *RandomPic* 』─❍
+◈ • *aesthetic*
+◈ • *antiwork*
+◈ • *bike*
+◈ • *blackpink3*
+◈ • *boneka*
+◈ • *car*
+◈ • *cat*
+◈ • *chinese*
+◈ • *cosplay2*
+◈ • *doggo*
+◈ • *girl*
+◈ • *hijab*
+◈ • *indo*
+◈ • *japanese*
+◈ • *justina*
+◈ • *kayes*
+◈ • *korean*
+◈ • *kpop*
+◈ • *malay*
+◈ • *malaysia*
+◈ • *notnot*
+◈ • *person*
+◈ • *profile2*
+◈ • *pubg*
+◈ • *random*
+◈ • *random2*
+◈ • *ryujin*
+◈ • *thai*
+◈ • *ulzzanggirl*
+◈ • *ulzzangboy*
+◈ • *vietnamese*
+◈ • *wallhp*
+◈ • *wallml*
+╰─────────❍` //  
+      break
+      case 'randomvid':
+      lkr = `
+╭───『 *RandomVid* 』─❍
+◈ • *tiktokbocil*
+◈ • *tiktokgirl*
+◈ • *tiktokghea*
+◈ • *tiktokkayes*
+◈ • *tiktoknukhty*
+◈ • *tiktoknotnot*
+◈ • *tiktokpanrika*
+◈ • *tiktoksantuy*
+╰─────────❍` //
+      break
+    case 'groupmenu':
+      lkr = `
+╭───『 *GROUP* 』─❍
+◈ • *add*
+◈ • *admins*
+◈ • *antilink*
+◈ • *delete*
+◈ • *demote*
+◈ • *disable*
+◈ • *enable*
+◈ • *group*
+◈ • *groupinfo*
+◈ • *kick*
+◈ • *link*
+◈ • *mysn*
+◈ • *notify*
+◈ • *poll*
+◈ • *promote*
+◈ • *register*
+◈ • *resetlink*
+◈ • *setbye*
+◈ • *setdesc*
+◈ • *setname*
+◈ • *setpp*
+◈ • *setwelcome*
+◈ • *ship*
+◈ • *tagall*
+◈ • *totag*
+◈ • *warn*
+◈ • *warns*
+◈ • *unreg*
+◈ • *unwarn*
+◈ • *wyr*
+◈ • *toxic*
+◈ • *delwarn*
+◈ • *hidetag*
+╰─────────❍` //
+      break
+    case 'downloadermenu':
+    case 'dlmenu':
+    case 'downloads':
+      lkr = `
+╭───『 *DOWNLOAD* 』─❍
+◈ • *apkdl*
+◈ • *apksearch*
+◈ • *audio*
+◈ • *capcut*
+◈ • *dlstatus*
+◈ • *facebook*
+◈ • *gdrive*
+◈ • *gimage*
+◈ • *gitclone*
+◈ • *githubdl*
+◈ • *githubstalk*
+◈ • *igstory*
+◈ • *igstalk*
+◈ • *insta*
+◈ • *itunes*
+◈ • *likee*
+◈ • *mediafire*
+◈ • *mega*
+◈ • *npmstalk*
+◈ • *pinterest*
+◈ • *pinterest2*
+◈ • *play*
+◈ • *play2*
+◈ • *play5*
+◈ • *playstore*
+◈ • *playvid*
+◈ • *ringtone*
+◈ • *rnekos*
+◈ • *rwall*
+◈ • *swdl*
+◈ • *threads*
+◈ • *tiktok*
+◈ • *ttstalk*
+◈ • *twitter*
+◈ • *video*
+◈ • *wallpapers*
+◈ • *ytmp3*
+◈ • *ytmp4*
+◈ • *ytsearch*
+╰─────────❍` //
+      break
+    case 'economymenu':
+    case 'economy':
+      lkr = `
+╭───『 *ECONOMY* 』─❍
+◈ • *addgold*
+◈ • *addxp*
+◈ • *adventure*
+◈ • *balance*
+◈ • *bank*
+◈ • *bet*
+◈ • *buyall*
+◈ • *buych*
+◈ • *claim/daily*
+◈ • *craft*
+◈ • *deposit*
+◈ • *give*
+◈ • *heal*
+◈ • *leaderboard*
+◈ • *levelup*
+◈ • *mine*
+◈ • *monthly*
+◈ • *opencrate*
+◈ • *rob*
+◈ • *sell*
+◈ • *shop*
+◈ • *todiamond*
+◈ • *tomoney*
+◈ • *transfer*
+◈ • *wallet*
+◈ • *weekly*
+◈ • *withdraw*
+╰────────❍` // 
+      break
+    case 'funmenu':
+      lkr = `
+╭───『 *FUN* 』─❍
+◈ • *alexa*
+◈ • *character*
+◈ • *dare*
+◈ • *flirt*
+◈ • *gay*
+◈ • *hack*
+◈ • *hornycard*
+◈ • *lolicon*
+◈ • *shayeri*
+◈ • *simpcard*
+◈ • *ship*
+◈ • *stupid*
+◈ • *truth*
+◈ • *waste*
+◈ • *ytcomment*
+╰─────────❍` //
+      break
+      case 'animereactions':
+case 'reactions':
+lkr=`
+╭───『 *REACTIONS* 』─❍
+◈ • *awoo*
+◈ • *bite*
+◈ • *blush*
+◈ • *bonk*
+◈ • *bully*
+◈ • *cringe*
+◈ • *cry*
+◈ • *cuddle*
+◈ • *dance*
+◈ • *glomp*
+◈ • *happy*
+◈ • *handhold*
+◈ • *highfive*
+◈ • *hug*
+◈ • *kill*
+◈ • *kiss*
+◈ • *lick*
+◈ • *nom*
+◈ • *poke*
+◈ • *pat*
+◈ • *smug*
+◈ • *slap*
+◈ • *wave*
+◈ • *wink*
+◈ • *yeet*
+╰─────────❍` //
+      break
+    case 'animemenu':
+      lkr = `
+╭───『 *ANIME* 』─❍
+◈ • *akira*
+◈ • *akiyama*
+◈ • *anna*
+◈ • *asuna*
+◈ • *ayuzawa*
+◈ • *boruto*
+◈ • *chiho*
+◈ • *chitoge*
+◈ • *couplepp*
+◈ • *deidara*
+◈ • *elaina*
+◈ • *emilia*
+◈ • *erza*
+◈ • *hestia*
+◈ • *hinata*
+◈ • *hornycard*
+◈ • *inori*
+◈ • *itachi*
+◈ • *kagura*
+◈ • *kaori*
+◈ • *keneki*
+◈ • *kotori*
+◈ • *loli*
+◈ • *madara*
+◈ • *mikasa*
+◈ • *minato*
+◈ • *miku*
+◈ • *naruto*
+◈ • *neko*
+◈ • *nezuko*
+◈ • *sagiri*
+◈ • *sakura*
+◈ • *sasuke*
+◈ • *toanime*
+◈ • *waifu*
+╰─────────❍` //
+      break
+      case 'infoanime':
+      lkr = `
+╭───『 *INFO ANIME* 』─❍
+◈ • *anime akira*
+◈ • *anime akiyama*
+◈ • *anime anna*
+◈ • *anime asuna*
+◈ • *anime ayuzawa*
+◈ • *anime boruto*
+◈ • *anime chiho*
+◈ • *anime chitoge*
+◈ • *anime deidara*
+◈ • *anime elaina*
+◈ • *anime emilia*
+◈ • *anime erza*
+◈ • *anime hestia*
+◈ • *anime hinata*
+◈ • *anime inori*
+◈ • *anime isuzu*
+◈ • *anime itachi*
+◈ • *anime kagura*
+◈ • *anime kaori*
+◈ • *anime keneki*
+◈ • *anime kotori*
+◈ • *anime loli*
+◈ • *anime madara*
+◈ • *anime mikasa*
+◈ • *anime minato*
+◈ • *anime miku*
+◈ • *anime naruto*
+◈ • *anime neko*
+◈ • *anime nezuko*
+◈ • *anime sakura*
+◈ • *anime sagiri*
+◈ • *anime sasuke*
+◈ • *anime waifu*
+╰─────────❍` //
+      break
+    case 'gamemenu':
+    case 'gamesmenu':
+      lkr = `
+╭───『 *GAME* 』─❍
+◈ • *casino*
+◈ • *chess*
+◈ • *cock-fight*
+◈ • *delttt*
+◈ • *fhint*
+◈ • *guessflag*
+◈ • *math*
+◈ • *math answer*
+◈ • *ppt*
+◈ • *roulette*
+◈ • *slot*
+◈ • *tictactoe*
+╰─────────❍` //
+      break
+    case 'stickermenu':
+      lkr = `
+╭───『 *STICKER* 』─❍
+◈ • *attp*
+◈ • *attp2*
+◈ • *attp3*
+◈ • *emojimix*
+◈ • *getsticker*
+◈ • *quote*
+◈ • *quoted*
+◈ • *rc*
+◈ • *scircle*
+◈ • *s*
+◈ • *smaker*
+◈ • *smeme*
+◈ • *stickers*
+◈ • *take*
+◈ • *tenor*
+◈ • *tgsticker*
+◈ • *toimg*
+◈ • *tovid*
+◈ • *trigger*
+◈ • *ttp*
+◈ • *ttp2*
+╰─────────❍` //
+      break
+    case 'toolmenu':
+    case 'toolsmenu':
+      lkr = `
+╭───『 *TOOLS* 』─❍
+◈ • *android*
+◈ • *autosticker*
+◈ • *base64*
+◈ • *calc*
+◈ • *carbon*
+◈ • *checkmail*
+◈ • *course*
+◈ • *define*
+◈ • *element*
+◈ • *enhance*
+◈ • *fancy*
+◈ • *filelength*
+◈ • *google*
+◈ • *googleit*
+◈ • *happymod*
+◈ • *imdb*
+◈ • *itunes*
+◈ • *linux*
+◈ • *lyrics*
+◈ • *nowa*
+◈ • *pokedex*
+◈ • *qrmaker*
+◈ • *quote*
+◈ • *readmore*
+◈ • *readqr*
+◈ • *readvo*
+◈ • *reddit*
+◈ • *removebg*
+◈ • *remini*
+◈ • *ssweb*
+◈ • *styletext*
+◈ • *technews*
+◈ • *tinyurl*
+◈ • *tocartoon*
+◈ • *topdf*
+◈ • *tourl*
+◈ • *trace*
+◈ • *translate*
+◈ • *true*
+◈ • *wa*
+◈ • *weather*
+◈ • *whatmusic*
+◈ • *wattpad*
+◈ • *wikipedia*
+╰─────────❍` //
+break
+case 'aeditor':
+case 'audioeditor':
+lkr=`
+╭───『 *AUDIOS* 』─❍
+◈ • *bass*
+◈ • *blown*
+◈ • *chipmunk*
+◈ • *deep*
+◈ • *earrape*
+◈ • *fast*
+◈ • *nightcore*
+◈ • *reverse*
+◈ • *robot*
+◈ • *slow*
+◈ • *smooth*
+◈ • *squirrel*
+◈ • *tupai*
+╰─────────❍` //
+      break
+    case 'nsfwmenu': 
+      lkr = `
+  ╭───『 *NSFW* 』─❍
+  ◈ • *genshin*
+  ◈ • *swimsuit*
+  ◈ • *schoolswimsuit*
+  ◈ • *white*
+  ◈ • *barefoot*
+  ◈ • *touhou*
+  ◈ • *gamecg*
+  ◈ • *hololive*
+  ◈ • *uncensored*
+  ◈ • *sunglasses*
+  ◈ • *glasses*
+  ◈ • *weapon*
+  ◈ • *shirtlift*
+  ◈ • *chain*
+  ◈ • *fingering*
+  ◈ • *flatchest*
+  ◈ • *torncloth*
+  ◈ • *bondage*
+  ◈ • *demon*
+  ◈ • *wet*
+  ◈ • *pantypull*
+  ◈ • *headdress*
+  ◈ • *headphone*
+  ◈ • *tie*
+  ◈ • *anusview*
+  ◈ • *shorts*
+  ◈ • *stokings*
+  ◈ • *topless*
+  ◈ • *beach*
+  ◈ • *bunnygirl*
+  ◈ • *bunnyear*
+  ◈ • *idol*
+  ◈ • *vampire*
+  ◈ • *gun*
+  ◈ • *maid*
+  ◈ • *bra*
+  ◈ • *nobra*
+  ◈ • *bikini*
+  ◈ • *whitehair*
+  ◈ • *blonde*
+  ◈ • *pinkhair*
+  ◈ • *bed*
+  ◈ • *ponytail*
+  ◈ • *nude*
+  ◈ • *dress*
+  ◈ • *underwear*
+  ◈ • *foxgirl*
+  ◈ • *uniform*
+  ◈ • *skirt*
+  ◈ • *sex*
+  ◈ • *sex2*
+  ◈ • *sex3*
+  ◈ • *breast*
+  ◈ • *twintail*
+  ◈ • *spreadpussy*
+  ◈ • *tears*
+  ◈ • *seethrough*
+  ◈ • *breasthold*
+  ◈ • *drunk*
+  ◈ • *fateseries*
+  ◈ • *spreadlegs*
+  ◈ • *openshirt*
+  ◈ • *headband*
+  ◈ • *food*
+  ◈ • *close*
+  ◈ • *tree*
+  ◈ • *nipples*
+  ◈ • *erectnipples*
+  ◈ • *horns*
+  ◈ • *greenhair*
+  ◈ • *wolfgirl*
+  ◈ • *catgirl*
+  ◈ • *nsfw*
+  ◈ • *ass*
+  ◈ • *boobs*
+  ◈ • *lesbian*
+  ◈ • *pussy*
+  ◈ • *pack*
+  ╰─────────❍` //
+      break
+    case 'logomenu':
+    case 'makermenu':
+      lkr = `
+╭───『 *MAKER* 』─❍
+◈ • *blur*
+◈ • *difuminar2*
+◈ • *enhance*
+◈ • *gfx1*
+◈ • *gfx10*
+◈ • *gfx11*
+◈ • *gfx12*
+◈ • *gfx2*
+◈ • *gfx3*
+◈ • *gfx4*
+◈ • *gfx5*
+◈ • *gfx6*
+◈ • *gfx7*
+◈ • *gfx8*
+◈ • *gfx9*
+◈ • *hornycard*
+◈ • *hornylicense*
+◈ • *itssostupid*
+◈ • *iss*
+◈ • *lolicon*
+◈ • *logololi*
+◈ • *simpcard*
+◈ • *stupid*
+◈ • *tweet <comment>*
+◈ • *ytcomment <comment>*
+╰─────────❍` //
+      break
+    default:
+      lkr = `Invalid command. Type ${usedPrefix}list to see available options.`
+  }
 
-        const videoUrl = 'https://files.catbox.moe/ch9m5c.mp4' // URL fija del video
+  conn.sendFile(m.chat, pp, 'perfil.jpg', lkr, m, false, { mentions: [who] })
 
-        let menu = `
-ㅤ🍃⩁ ꯭ ͡ ᩚ꯭ ⩁ 🍃
-─────── 𑁯 💎 🌟 ───────
-
-👤 ¡Hᴏʟᴀ, ${taguser}! 
-💬 ${saludo}
-
-⏳ *Activo:* ${uptime} 
-👥 *Usuarios:* ${totalreg} 
-🔧 *Versión:* 3.0.0
-
-💰 \`Gemas:\` ${diamantes} 
-✨ _Exp:_ ${exp} 
-🎯 *Nivel:* ${level} 
-🏅 *Rango:* ${role}
-
-${readMore}
-
-───────
-乂 ᴄᴏᴍᴀɴᴅᴏs 乂
-
-𓂂𓏸 𓂂𓏸  𐅹੭੭   *\`mᥱᥒᥙs\`*   🌿✨  
-ර ׄ 🌿˚ .menunsfw  
-ර ׄ 🌿˚ .menuaudios  
-ර ׄ 🌿˚ .menuff  
-ර ׄ 🌿˚ .menuowner  
-ර ׄ 🌿˚ .menulogos  
-
-𓂂𓏸  𐅹੭੭   *\`іᥒ𝖿᥆\`*   🍵🍃  
-ර ׄ 🍵˚ .totalf  
-ර ׄ 🍵˚ .grupos  
-ර ׄ 🍵˚ .sugerir  
-ර ׄ 🍵˚ .report  
-ර ׄ 🍵˚ .owner  
-ර ׄ 🍵˚ .ping  
-ර ׄ 🍵˚ .uptime  
-ර ׄ 🍵˚ .horario  
-ර ׄ 🍵˚ .precios  
-
-𓂂𓏸  𐅹੭੭   *\`᥆ᥒ - ᥆𝖿𝖿\`*   🌱🌿  
-ර ׄ 🌱˚ .enable *opción*  
-ර ׄ 🌱˚ .disable *opción*  
-ර ׄ 🌱˚ .on *opción*  
-ර ׄ 🌱˚ .off *opción*  
-ර ׄ 🌱˚ .manual  
-
-𓂂𓏸  𐅹੭੭   *\`ძᥱsᥴᥲrgᥲs\`*   📤💻  
-ර ׄ 📤˚ .play *texto*  
-ර ׄ 📤˚ .aplay *texto*  
-ර ׄ 📤˚ .aplay2 *texto*  
-ර ׄ 📤˚ .splay *texto*  
-ර ׄ 📤˚ .ytmp4doc *texto*  
-ර ׄ 📤˚ .ytmp3doc *texto*  
-ර ׄ 📤˚ .apk *texto*  
-ර ׄ 📤˚ .pinterest *texto*  
-ර ׄ 📤˚ .capcut *url*  
-ර ׄ 📤˚ .pinvid *url*  
-ර ׄ 📤˚ .ytmp4 *url*  
-ර ׄ 📤˚ .ytmp3 *url*  
-ර ׄ 📤˚ .tiktok *url*  
-ර ׄ 📤˚ .tiktok2 *url*  
-ර ׄ 📤˚ .instagram *url*  
-ර ׄ 📤˚ .facebook *url*  
-ර ׄ 📤˚ .mediafire *url*  
-ර ׄ 📤˚ .mega *url*  
-ර ׄ 📤˚ .playstore *url*  
-ර ׄ 📤˚ .xnxxdl *url*  
-ර ׄ 📤˚ .xvideosdl *url*  
-ර ׄ 📤˚ .pornhubdl *url*  
-
-𓂂𓏸  𐅹੭੭   *\`ᑲᥙsᥴᥲძ᥆rᥱs\`*   🧭🔍  
-ර ׄ 🧭˚ .scsearch *texto*  
-ර ׄ 🧭˚ .aplaysearch *texto*  
-ර ׄ 🧭˚ .ttsearch *texto*  
-ර ׄ 🧭˚ .ttsearch2 *texto*  
-ර ׄ 🧭˚ .ytsearch *texto*  
-ර ׄ 🧭˚ .hpmsearch *texto*  
-ර ׄ 🧭˚ .spotifysearch *texto*  
-ර ׄ 🧭˚ .githubsearch *texto*  
-ර ׄ 🧭˚ .playstoresearch *texto*  
-ර ׄ 🧭˚ .xnxxsearch *texto*  
-ර ׄ 🧭˚ .xvsearch *texto*  
-ර ׄ 🧭˚ .pornhubsearch *texto*  
-ර ׄ 🧭˚ .gnula *texto*  
-ර ׄ 🧭˚ .mercadolibre *texto*  
-ර ׄ 🧭˚ .ffstalk *id*
-
-𓂂𓏸  𐅹੭੭   *\`іᥒ𝗍ᥱᥣіgᥱᥒᥴіᥲs\`*   ☕ᩚ꤬ᰨᰍ
-ര ׄ ☕˚ .ia *texto*
-ര ׄ ☕˚ .shadow *texto*
-ര ׄ ☕˚ .flux *texto*
-ര ׄ ☕˚ .chatgpt *texto*
-ര ׄ ☕˚ .imgg *texto*
-ര ׄ ☕˚ .imgg2 *texto*
-𐅹੭੭   *\`ᥣіs𝗍ᥲs\`*   📝🎴✦
-ര ׄ 📝˚ .infem4 *hr + p*
-ര ׄ 📝˚ .inmasc4 *hr + p*
-ര ׄ 📝˚ .inmixto4 *hr + p*
-ര ׄ 📝˚ .infem6 *hr + p*
-ര ׄ 📝˚ .inmasc6 *hr + p*
-ര ׄ 📝˚ .inmixto6 *hr + p*
-ര ׄ 📝˚ .v4fem *hr + p*
-ര ׄ 📝˚ .v4masc *hr + p*
-ര ׄ 📝˚ .v4mixto *hr + p*
-ര ׄ 📝˚ .v6fem *hr + p*
-ര ׄ 📝˚ .v6masc *hr + p*
-ര ׄ 📝˚ .v6mixto *hr + p*
-
-𓂂𓏸  𐅹੭੭   *\`𝖿rᥲsᥱs\`*   🌹🎴✦
-ര ׄ 🌹˚ .piropo
-ര ׄ 🌹˚ .consejo
-ര ׄ 🌹˚ .fraseromantica
-
-𓂂𓏸  𐅹੭੭   *\`ᥴ᥆ᥒ᥎ᥱr𝗍іძ᥆rᥱs\`*   🪢🎴✦
-ര ׄ 🪢˚ .tourl *img*
-ര ׄ 🪢˚ .tourl *aud*
-ര ׄ 🪢˚ .toptt *aud*
-ര ׄ 🪢˚ .toptt *vid*
-ര ׄ 🪢˚ .tourl *vid*
-ര ׄ 🪢˚ .tomp3 *vid*
-ര ׄ 🪢˚ .toimg *sticker*
-
-𓂂𓏸  𐅹੭੭   *\`hᥱrrᥲmіᥱᥒ𝗍ᥲs\`*   🔨🎴✦
-ര ׄ 🔨˚ .clima *texto*
-ര ׄ 🔨˚ .readmore *texto*
-ര ׄ 🔨˚ .read *texto*
-ര ׄ 🔨˚ .fake *texto + user + texto*
-ര ׄ 🔨˚ .traducir *idioma + texto*
-ര ׄ 🔨˚ .hd *img*
-ര ׄ 🔨˚ .whatmusic *aud*
-ര ׄ 🔨˚ .whatmusic *vid*
-ര ׄ 🔨˚ .flag *país*
-ര ׄ 🔨˚ .inspect *link*
-ര ׄ 🔨˚ .inspeccionar *link*
-ര ׄ 🔨˚ .nuevafotochannel
-ര ׄ 🔨˚ .nosilenciarcanal
-ര ׄ 🔨˚ .silenciarcanal
-ര ׄ 🔨˚ .seguircanal
-ര ׄ 🔨˚ .avisoschannel
-ര ׄ 🔨˚ .resiviravisos
-ര ׄ 🔨˚ .eliminarfotochannel
-ര ׄ 🔨˚ .reactioneschannel
-ര ׄ 🔨˚ .reaccioneschannel
-ര ׄ 🔨˚ .nuevonombrecanal
-ര ׄ 🔨˚ .nuevadescchannel
-
-𓂂𓏸  𐅹੭੭   *\`grᥙ⍴᥆s\`*   🌳🎴✦
-ര ׄ 🌳˚ .add *número*
-ര ׄ 🌳˚ .grupo *abrir / cerrar*
-ര ׄ 🌳˚ .grouptime *tiempo*
-ര ׄ 🌳˚ .notify *texto*
-ര ׄ 🌳˚ Aviso *texto*
-ര ׄ 🌳˚ Admins *texto*
-ര ׄ 🌳˚ .todos *texto*
-ര ׄ 🌳˚ .setwelcome *texto*
-ര ׄ 🌳˚ .groupdesc *texto*
-ര ׄ 🌳˚ .setbye *texto*
-ര ׄ 🌳˚ .promote *@tag*
-ര ׄ 🌳˚ .demote *@tag*
-ര ׄ 🌳˚ .kick *@tag*
-ര ׄ 🌳˚ .mute *@tag*
-ര ׄ 🌳˚ .inactivos *opción*
-ര ׄ 🌳˚ .tagnum *prefix*
-ര ׄ 🌳˚ .link
-ര ׄ 🌳˚ .fantasmas
-ര ׄ 🌳˚ .enlinea
-
-𓂂𓏸  𐅹੭੭   *\`ᥱ𝖿ᥱᥴ𝗍᥆s\`*   🌾🎴✦
-ര ׄ 🌾˚ .bass *vid*
-ര ׄ 🌾˚ .blown *vid*
-ര ׄ 🌾˚ .deep *vid*
-ර ׄ 🌾˚ .earrape *vid*
-ര ׄ 🌾˚ .fast *vid*
-ර ׄ 🌾˚ .smooth *vid*
-ര ׄ 🌾˚ .tupai *vid*
-ര ׄ 🌾˚ .nightcore *vid*
-ര ׄ 🌾˚ .reverse *vid*
-ര ׄ 🌾˚ .robot *vid*
-ര ׄ 🌾˚ .slow *vid*
-ര ׄ 🌾˚ .squirrel *vid*
-ര ׄ 🌾˚ .chipmunk *vid*
-ര ׄ 🌾˚ .reverb *vid*
-ර ׄ 🌾˚ .chorus *vid*
-ර ׄ 🌾˚ .flanger *vid*
-ര ׄ 🌾˚ .distortion *vid*
-ර ׄ 🌾˚ .pitch *vid*
-ര ׄ 🌾˚ .highpass *vid*
-ර ׄ 🌾˚ .lowpass *vid*
-ര ׄ 🌾˚ .underwater *vid*
-
-𓂂𓏸  𐅹੭੭   *\`serbot\`*   🌵🎴✦
-ര ׄ 🪢˚ .code
-ര ׄ 🪢˚ .delsesion
-ര ׄ 🪢˚ .bots
-ര ׄ 🪢˚ .token *(Por si perdiste tu token de reconexión)*
-
-𓂂𓏸  𐅹੭੭   *\`ძі᥎ᥱrsі᥆ᥒ\`*   🍞🎴✦
-ര ׄ 🍞˚ .gay *@tag*
-ര ׄ 🍞˚ .lesbiana *@tag*
-ര ׄ 🍞˚ .pajero *@tag*
-ര ׄ 🍞˚ .pajera *@tag*
-ര ׄ 🍞˚ .puto *@tag*
-ര ׄ 🍞˚ .puta *@tag*
-ര ׄ 🍞˚ .manco *@tag*
-ര ׄ 🍞˚ .manca *@tag*
-ര ׄ 🍞˚ .rata *@tag*
-ര ׄ 🍞˚ .prostituto *@tag*
-ര ׄ 🍞˚ .prostituta *@tag*
-ര ׄ 🍞˚ .doxear *@tag*
-ര ׄ 🍞˚ .jalamela *@tag*
-ര ׄ 🍞˚ .simi *texto*
-ര ׄ 🍞˚ .pregunta *texto*
-ര ׄ 🍞˚ .genio *texto*
-ര ׄ 🍞˚ .top
-ര ׄ 🍞˚ .sorteo
-ര ׄ 🍞˚ .piropo
-ര ׄ 🍞˚ .chiste
-ര ׄ 🍞˚ .facto
-ර ׄ 🍞˚ .verdad
-ර ׄ 🍞˚ .pareja
-ര ׄ 🍞˚ .parejas
-ര ׄ 🍞˚ .love
-ര ׄ 🍞˚ .personalidad
-
-𓂂𓏸  𐅹੭੭   *\`ȷᥙᥱg᥆s\`*   🐦🎴✦
-ര ׄ 🐦˚ .pregunta *texto*
-ര ׄ 🐦˚ .ttt *texto*
-ര ׄ 🐦˚ .ptt *opción*
-ര ׄ 🐦˚ .delttt
-ര ׄ 🐦˚ .acertijo
-ര ׄ 🐦˚ .trivia
-
-𓂂𓏸  𐅹੭੭   *\`ᥲᥒіmᥱ\`*   🦊🎴✦
-ര ׄ 🏕️˚ .messi
-
-𓂂𓏸  𐅹੭੭   *\`gі𝖿s ᥒs𝖿ա\`*   🔥🎴✦
-ര ׄ 🔥˚ .violar *@tag*
-ര ׄ 🔥˚ .follar *@tag*
-ര ׄ 🔥˚ .anal *@tag*
-ര ׄ 🔥˚ .coger *@tag*
-ര ׄ 🔥˚ .coger2 *@tag*
-ර ׄ 🔥˚ .penetrar *@tag*
-ര ׄ 🔥˚ .sexo *@tag*
-ര ׄ 🔥˚ .rusa *@tag*
-ര ׄ 🔥˚ .sixnine *@tag*
-ര ׄ 🔥˚ .pies *@tag*
-ര ׄ 🔥˚ .mamada *@tag*
-ര ׄ 🔥˚ .lickpussy *@tag*
-ര ׄ 🔥˚ .grabboobs *@tag*
-ര ׄ 🔥˚ .suckboobs *@tag*
-ര ׄ 🔥˚ .cum *@tag*
-ර ׄ 🔥˚ .fap *@tag*
-ര ׄ 🔥˚ .manosear *@tag*
-ര ׄ 🔥˚ .lesbianas *@tag*
-
-𓂂𓏸  𐅹੭੭   *\`s𝗍іᥴkᥱrs\`*   🍦🎴✦
-ര ׄ 🍦˚ .sticker *img*
-ര ׄ 🍦˚ .sticker *vid*
-ര ׄ 🍦˚ .brat *texto*
-ര ׄ 🍦˚ .qc *texto*
-ര ׄ 🍦˚ .dado
-
-𓂂𓏸  𐅹੭੭   *\`r⍴g\`*   💰🎴✦
-ര ׄ 💰˚ .minar
-ര ׄ 💰˚ .cofre
-ര ׄ 💰˚ .slut
-ര ׄ 💰˚ .nivel
-ര ׄ 💰˚ .ruleta
-
-𓂂𓏸  𐅹੭੭   *\`rᥱgіs𝗍r᥆\`*   🧭🎴✦
-ര ׄ 🧭˚ .perfil
-ര ׄ 🧭˚ .reg
-ര ׄ 🧭˚ .unreg
-
-𓂂𓏸  𐅹੭੭   *\`᥆աᥒᥱr\`*   🍃🎴✦
-ര ׄ 🍃˚ .salir
-ര ׄ 🍃˚ .update
-ര ׄ 🍃˚ .blocklist
-ര ׄ 🍃˚ .grouplist
-ര ׄ 🍃˚ .restart
-ര ׄ 🍃˚ .join
-ര ׄ 🍃˚ .chetar
-ര ׄ 🍃˚ .unbanuser
-`.trim()
-
-        await conn.sendMessage(m.chat, {
-            video: { url: videoUrl }, // Video fijo
-            caption: menu,
-            contextInfo: {
-                mentionedJid: [m.sender],
-                isForwarded: false,
-                forwardingScore: 0,
-                externalAdReply: {
-                    title: '❖⊰✧  𝒮ʰᴀᵈᴏʷ ᵁˡᵗʳᴀ ᴹᴰ ⊱❖\✨Nᴜᴇᴠᴀ ᴇᴅɪᴄɪᴏɴ 𝒮ʰᴀᵈᴏʷ ✨\🚀 ᵁˡᵗʳᵃ ᴇᵛᴏˡᵘᵗᴵᴼᴺ💫',
-                    thumbnailUrl: perfil,
-                    mediaType: 1,
-                    renderLargerThumbnail: false,
-                },
-            },
-            gifPlayback: false,
-            gifAttribution: 0
-        }, { quoted: null })
-    } catch (e) {
-        await m.reply(`*[ ℹ️ ] El menu cuenta actualmente con un pequeño error.*\n\n${e}`)
-    }
+  let done = '👍'
+  m.react(done)
 }
 
-handler.help = ['menuff'];
-handler.tags = ['main'];
-handler.customPrefix = /m|@|./i;
-handler.command = ['menu', 'enu']
-handler.fail = null;
-export default handler;
+handler.help = [
+  'listmenu',
+  'menulist',
+  'aimenu',
+  'animereactions',
+  'reactions',
+  'imagen',
+  'textpro',
+  'textmaker',
+  'logosmaker',
+  'imagenai',
+  'animemenu',
+  'aeditor',
+  'audioeditor',
+  'infoanime',
+  'botmenu',
+  'ownermenu',
+  'groupmenu',
+  'dlmenu',
+  'downloads',
+  'downloadermenu',
+  'economymenu',
+  'economy',
+  'funmenu',
+  'gamemenu',
+  'gamesmenu',
+  'stickermenu',
+  'nsfwmenu',
+  'logomenu',
+  'makermenu',
+  'randompic',
+  'randomvid',
+  'toolsmenu',
+  'toolmenu',
+]
+handler.tags = ['main']
+handler.command = [
+  'listmenu',
+  'menulist',
+  'aimenu',
+  'animereactions',
+  'reactions',
+  'imagen',
+  'textpro',
+  'textmaker',
+  'logosmaker',
+  'imagenai',
+  'animemenu',
+  'aeditor',
+  'audioeditor',
+  'infoanime',
+  'botmenu',
+  'ownermenu',
+  'groupmenu',
+  'dlmenu',
+  'downloads',
+  'downloadermenu',
+  'economymenu',
+  'economy',
+  'funmenu',
+  'gamemenu',
+  'gamesmenu',
+  'stickermenu',
+  'nsfwmenu',
+  'logomenu',
+  'makermenu',
+  'randompic',
+  'randomvid',
+  'toolsmenu',
+  'toolmenu',
+]
 
-const more = String.fromCharCode(8206)
-const readMore = more.repeat(4001)
-function clockString(ms) {
-  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
-  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
-  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
-  return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-}
+export default handler
