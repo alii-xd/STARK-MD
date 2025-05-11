@@ -314,7 +314,7 @@ ${readMore}
             caption: menu,
             contextInfo: {
                 mentionedJid: [m.sender],
-                isForwarded: true,
+                isForwarded: false,
                 forwardingScore: 0,
                 externalAdReply: {
                     title: '❖⊰✧  𝒮ʰᴀᵈᴏʷ ᵁˡᵗʳᴀ ᴹᴰ ⊱❖\✨Nᴜᴇᴠᴀ ᴇᴅɪᴄɪᴏɴ 𝒮ʰᴀᵈᴏʷ ✨\🚀 ᵁˡᵗʳᵃ ᴇᵛᴏˡᵘᵗᴵᴼᴺ💫',
@@ -323,7 +323,7 @@ ${readMore}
                     renderLargerThumbnail: false,
                 },
             },
-            gifPlayback: true,
+            gifPlayback: false,
             gifAttribution: 0
         }, { quoted: null })
     } catch (e) {
